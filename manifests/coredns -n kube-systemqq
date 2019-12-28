@@ -1,0 +1,702 @@
+    1  mount /dev/cdrom /mnt
+    2  cd /mnt
+    3  ls -la
+    4  cp VMwareTools-9.4.15-2827462.tar.gz  /root
+    5  cd /root
+    6  umount /mnt
+    7  tar -xvzf VMwareTools-9.4.15-2827462.tar.gz 
+    8  cd vmware-tools-distrib/
+    9  clear
+   10  ./vmware-install.pl 
+   11  clear
+   12  rpm -qa | grep open
+   13  rpm -e open-vm-tools
+   14  rpm -qa | grep open
+   15  ./vmware-install.pl --default
+   16  ./vmware-install.pl 
+   17  clear
+   18  yum install make
+   19  yum install gcc
+   20  yum install kernel-header
+   21  yum install kernel
+   22  yum install kernel-headers
+   23  ./vmware-install.pl  
+   24  shutdown 
+   25  mount /dev/cdrom /mnt
+   26  cp /mnt/VMwareTools-10.1.10-6082533.tar.gz /root
+   27  cd /root
+   28  umount /mnt
+   29  dir
+   30  rm vmware-tools-distrib/ -Rf
+   31  rm VMwareTools-9.4.15-2827462.tar.gz 
+   32  tar -xvzf VMwareTools-10.1.10-6082533.tar.gz 
+   33  cd vmware-tools-distrib/
+   34  dir
+   35  cd  bin
+   36  cd ..
+   37  dir
+   38  ./vmware-install.pl --default
+   39  cat /etc/redhat-release 
+   40  yum update
+   41  yum update -y
+   42  cat /etc/redhat-release 
+   43  df
+   44  shutwodn -h now
+   45  shutdown -h now
+   46  df
+   47  yum update -y
+   48  cat /etc/redhat-release 
+   49  shutdown -h now
+   50  hostnamectl set-hostname kube-master
+   51  vim /etc/hosts
+   52  ip a| grep inet
+   53  vim /etc/hosts
+   54  q!
+   55  qq!
+   56  vim /etc/hosts
+   57  sudo yum update 
+   58  sudo reboot
+   59  kubectl cluster-info
+   60  kubectl get services --all-namespaces
+   61  kubectl edit services -n kube-system kubernetes-dashboard
+   62  kubectl get services --all-namespaces
+   63  kubectl get services pods -o wide
+   64  kubectl get  pods -o wide
+   65  kubectl get pods -o wide -n kube-system
+   66  exit
+   67  kubectl get nodes
+   68  yum install docker
+   69  systemctl status docker
+   70  systemctl enable --now docker
+   71  systemctl status docker
+   72  getenforce
+   73  service firewalld status
+   74  cat << EOF >> /etc/yum.repos.d/kubernetes.repo
+   75  [kubernetes]
+   76  name=Kubernetes
+   77  baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+   78  enabled=1
+   79  gpgcheck=1
+   80  gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+   81  cat << EOF >> /etc/yum.repos.d/kubernetes.repo
+   82  [kubernetes]
+   83  name=Kubernetes
+   84  baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+   85  enabled=1
+   86  gpgcheck=1
+   87  gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
+   88  EOF
+   89  sudo yum update
+   90  sudo yum install kubeadm kubectl 
+   91  systemctl restart kubelet && systemctl enable kubelet
+   92  systemctl status kubelet
+   93  systemctl status kubelet -l
+   94  systemctl restart kubelet
+   95  systemctl status kubelet -l
+   96  systemctl restart kubelet
+   97  systemctl status kubelet
+   98  sudo yum remove kubelet
+   99  yum clean-all
+  100  yum clean all
+  101  yum update
+  102  yum install kubeadm kubectl 
+  103  systemctl status kubelet
+  104  service docker status
+  105  service kubelet status
+  106  kubelet --version
+  107  kubeadm init --pod-network-cidr=10.244.0.0/16
+  108  sed -i '/swap/d' /etc/fstab 
+  109  sudo swapoff -a
+  110  modprobe br_netfilter
+  111  echo '1' > /proc/sys/net/bridge/bridge-nf-call-iptables
+  112  kubeadm init --pod-network-cidr=10.244.0.0/16
+  113  mkdir -p $HOME/.kube
+  114    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+  115    sudo chown $(id -u):$(id -g) $HOME/.kube/config
+  116  kubectl get nodes
+  117  kubectl get nodes -w
+  118  kubectl get nodes 
+  119  kubectl cluster-info 
+  120  kubectl get nodes -o wide
+  121  kubectl config view
+  122  kubectl get pods --all-namespaces
+  123  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
+  124  kubectl delete -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
+  125  kubectl get pods --all-namespaces
+  126  kubectl cluster-info
+  127  kubectl version
+  128  kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+  129  kubectl get pods -o wide
+  130  kubectl get nodes -o wide
+  131  kubectl get nodes
+  132  kubectl get pods --all-namespaces
+  133  ls
+  134  mkdir dashboard
+  135  cd dashboard/
+  136  ls
+  137  vim admin-user-sa.yaml
+  138  kubectl get serviceaccounts
+  139  kubectl get serviceaccounts --all-namespaces
+  140  ls
+  141  kubectl get serviceaccounts --all-namespaces | grep admin
+  142  kubectl apply -f admin-user-sa.yaml
+  143  kubectl get serviceaccounts --all-namespaces | grep admin
+  144  kubectl get cluster-roles
+  145  kubectl get roles
+  146  kubectl get cluster-roles
+  147  kubectl get clusterroles
+  148  kubectl get clusterroles -n kube-system
+  149  kubectl get clusterroles -n kube-system | grep cluster
+  150  kubectl describe clusterroles cluster-admin
+  151  kubectl describe clusterroles -l Labels:kubernetes.io/bootstrapping=rbac-defaults
+  152  kubectl describe clusterroles -l kubernetes.io/bootstrapping=rbac-defaults
+  153  ls
+  154  vim admin-user-role-binding.yaml
+  155  kubectl apply -f admin-user-role-binding.yaml
+  156  vim admin-user-role-binding.yaml
+  157  kubectl apply -f admin-user-role-binding.yaml
+  158  kubectl -n kube-system get secret
+  159  kubectl -n kube-system get secret | grep admin-user
+  160  kubectl -n kube-system get secret | grep admin-user | awk '{ print $1 }'
+  161  kubectl describe secret admin-user-token-p2q7l
+  162  kubectl describe secret admin-user-token-p2q7l -n kube-system
+  163  kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+  164  kubectl apply -f https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/heapster.yaml
+  165  kubectl delete -f https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/heapster.yaml
+  166  curl https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/heapster.yaml
+  167  ls
+  168  curl -o heapster.yaml https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/heapster.yaml
+  169  ls
+  170  vim heapster.yaml 
+  171  kubectl apply -f heapster.yaml 
+  172  kubectl delete -f https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/heapster.yaml
+  173  kubectl apply -f https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/influxdb.yaml
+  174  kubectl delete -f https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/influxdb.yaml
+  175  kubectl proxy
+  176  kubectl get nodes
+  177  kubectl delete node vm-101932549
+  178  kubectl get nodes
+  179  kubectl alpha checks-expiration
+  180  kubectl certs checks-expiration
+  181  kubectl alpha certs checks-expiration
+  182  kubectl certs check-expiration
+  183  kubectl --help | grep certs
+  184  kubeadm certs check-expiration
+  185  kubeadm alpha certs check-expiration
+  186  kubeadm --help
+  187  kubeadm alpha certs check-expiration
+  188  kubectl get pods
+  189  kubectl get nodes
+  190  kubectl get nodes -o wide
+  191  kubectl run nginx
+  192  ls
+  193  cd dashboard/
+  194  ls
+  195  cd ..
+  196  kubectl apply -f https://raw.githubusercontent.com/justmeandopensource/kubernetes/master/dashboard/heapster.yaml
+  197  kubectl delete -f https://raw.githubusercontent.com/justmeandopensource/kubernetes/master/dashboard/heapster.yaml
+  198  kubectl get pods --all-namespaces
+  199  kubectl get services
+  200  kubectl get services --all-namespaces
+  201  kubectl get pods -o wide
+  202  kubectl get pods -o wide -n kube-system
+  203  kubectl proxy
+  204  kubectl cluster-info
+  205  kubectl proxy
+  206  kubectl get pods
+  207  kubectl get nodes
+  208  kubectlapi-resources 
+  209  kubectl api-resources 
+  210  kubectl api-resources | less
+  211  kubectl api-resources | sort | less
+  212  kubectl api-resources -o wide
+  213  kubectl explain ingresses
+  214  kubectl api-resources
+  215  kubectl api-resources -o wide
+  216  kubectl explain roles
+  217  kubectl explain pods
+  218  kubectl --help
+  219  kubectl help | grep explain
+  220  kubectl help
+  221  kubectl help | grep -A 5 -B 5 explain 
+  222  kubectl explain annotate
+  223  kubectl annotate help
+  224  kubectl api-resources
+  225  kubectl api-resources --api-group rbac.authorization.k8s.io
+  226  kubectl api-resources --api-group rbac.authorization.k8s.io -o wide
+  227  kubectl api-versios
+  228  kubectl api-versions
+  229  kubectl api-resources --api-group autoscaling/v1 -o wide
+  230  kubectl api-resources --api-group autoscaling/v2beta1 -o wide
+  231  kubectl explain autoscaling/v1
+  232  kubectl api-resources -o wide
+  233  kubectl api-versions
+  234  kubectl explain roles
+  235  kubectl explain help
+  236  kubectl explain
+  237  kubectl explain --help
+  238  kubectl api-resources
+  239  kubectl explain --help
+  240  kubectl explain pods.spec.containers
+  241  kubectl explain pods.spec
+  242  kubectl explain pods.spec | less
+  243  kubectl explain pods.spec.container | less
+  244  kubectl explain pods.spec.containers | less
+  245  kubectl api-resources
+  246  kubectl api-resources | head -n2
+  247  kubectl api-resources | grep roles
+  248  kubectl api-resources -o wide| grep roles
+  249  kubectl api-resources --api-group rbac.authorization.k8s.io 
+  250  kubectl api-versions
+  251  kubectl api-versions | head -n2
+  252  kubectl get deployments.v1.apps -n kube-systrem
+  253  kubectl get deployments.v1.apps -n kube-system
+  254  kubectl get deployments -n kube-system
+  255  kubectl edit deployments -n kube-system
+  256  kubectl get deployments.v1 -n kube-system
+  257  kubectl get pods.v1 -n kube-system
+  258  kubectl get pods.v1
+  259  kubectl get pods
+  260  kubectl get pods -n kube-system
+  261  kubectl get pods.v1 -n kube-system
+  262  kubectl edit pod etcd-kube-master
+  263  kubectl edit pod etcd-kube-master -n kube-system
+  264  kubectl get nodes -
+  265  kubectl get nodes 
+  266  kubectl get deployments.v1.apps -n kube-system
+  267  kubectl api-resources 
+  268  kubectl api-resources | head -n5
+  269  kubectl api-resources --shortnames
+  270  kubectl api-resources --shortnames cs
+  271  kubectl api-resources --name endpoints
+  272  kubectl api-resources --help
+  273  kubectl api-resources --name=endpoints
+  274  kubectl api-resources | head -n5
+  275  kubectl api-resources --shortname=endpoints
+  276  kubectl api-resources --sort-by=name
+  277  kubectl api-resources --sort-by=shortname
+  278  kubectl api-resources --sort-by=kind
+  279  kubectl api-resources --api-group=policy
+  280  kubectl api-resources --api-group=policy --sort-by=name
+  281  kubectl config-view
+  282  kubectl config view
+  283  kubectl get namespaces
+  284  kubectl config set-context --current --namespace=kube-system
+  285  kubectl config view
+  286  kubectl get pods
+  287  kubectl edit config
+  288  kubectl config edit
+  289  kubectl config help
+  290  kubectl config --help
+  291  kubectl config --current-context
+  292  kubectl config current-context
+  293  kubectl config get-contextx
+  294  kubectl config get-contexts
+  295  kubectl api-resources --namespaces=true
+  296  kubectl api-resources --namespaced=true
+  297  kubectl get namespaces
+  298  kubectl get pods
+  299  kubectl get pods --field-selector=status.phase!=Runnung
+  300  kubectl get pods coredns-6955765f44-2s6h8 
+  301  kubectl describe pods coredns-6955765f44-2s6h8 
+  302  kubectl describe pods coredns-6955765f44-2s6h8  | less
+  303  kubectl get pods --field-selector=Ready=False
+  304  kubectl get pods --field-selector Ready=False
+  305  kubectl get pods --field-selector Conditions.Ready=False
+  306  kubectl edit pods coredns-6955765f44-2s6h8 
+  307  kubectl get context
+  308  kubectl get user-context
+  309  kubectl get contexts
+  310  history | grep context
+  311  kubectl get-contexts
+  312  kubectl config  get-contexts
+  313  kubectl config set-context --current --namespace=default
+  314  kubectl get pods
+  315  kubectl config view
+  316  kubectl describe nodes | less
+  317  kubectl get nodes
+  318  kubectl describe node node-1
+  319  kubectl describe node node-1 | less
+  320  ssh node-1 free-h 
+  321  ssh node-1 "free -h"
+  322  kubectl describe node node-1 | less
+  323  kubectl describe node node-1 -o json
+  324  kubectl describe node node-1 
+  325  kubectl describe node node-1 -o yaml
+  326  kubectl describe nodes node-1 -o yaml
+  327  kubectl get nodes node-1 -o yaml
+  328  kubectl get nodes node-1 -o json | less
+  329  kubectl get nodes
+  330  kubectl get pods
+  331  kubectl get pods --all-namespaces
+  332  kubectl get nodes -o json
+  333  docker manifest
+  334  ls -al
+  335  docker --version
+  336  ssh node-1
+  337  cd /etc/docker/certs.d/
+  338  ls
+  339  cd ..
+  340  ls
+  341  sudo locate .docker
+  342  cd
+  343  kubelet --help
+  344  kubelet --cloud-provider
+  345  kubelet info
+  346  kubelet --help | less
+  347  vim /etc/kubernetes/kubelet.conf 
+  348  diff ~/.kube/config /etc/kubernetes/kubelet.conf
+  349  diff -u -b  ~/.kube/config /etc/kubernetes/kubelet.conf
+  350  q
+  351  kube-api-server 
+  352  kube-apiserver 
+  353  kubectl cluster-info
+  354  kubectl version
+  355  kube-apiserver
+  356  sudo kube-apiserver
+  357  kubectl proxy --port=8080 &
+  358  curl http://localhost:8080/api/
+  359  curl http://localhost:8080/api/ -o yaml
+  360  curl http://localhost:8080/api/ 
+  361  kube-apiserver
+  362  ls -al
+  363  kube-apiserver --help
+  364  systemctl list-units | grep kube
+  365  kubectl get nodes
+  366  kube-apiserver --help
+  367  kube-apiserver
+  368  kubeadm --help
+  369  kubeadm config
+  370  strace kubeadm --help
+  371  strace kubeadm --help | less
+  372  strace kubeadm --help
+  373  reset
+  374  strace ls
+  375  kubectl get nodes
+  376  kubectl get pods --all-namespaces
+  377  kubectl get statefulsets
+  378  kubectl get statefullsets
+  379  kubectl get statefull-sets
+  380  kubectl get --help
+  381  kubectl get help
+  382  kubectl get statefull-sets
+  383  kubectl get statefulsets
+  384  kubectl get statefulset
+  385  kubectl get statefulset --all-namespaces
+  386  kubectl api-resources
+  387  kubectl describe pods
+  388  kubectl describe pods --all-namespaces
+  389  kubectl describe pods --all-namespaces | less
+  390  kubectl get taints
+  391  kubectl describe nodes | less
+  392  kubectl describe nodes | grep taints
+  393  kubectl describe nodes | grep "taints"
+  394  kubectl describe nodes | less
+  395  kubectl describe nodes | grep -i "taints"
+  396  kubectl describe pods | grep -i "tolerations"
+  397  kubectl describe pods | grep -i "toleratio"
+  398  kubectl describe pods --all-namespaces | grep -i "tolerations"
+  399  kubectl describe pods --all-namespaces | grep -i -AB  "tolerations"
+  400  kubectl describe pods --all-namespaces | grep -i -A -B  "tolerations"
+  401  kubectl describe pods --all-namespaces | grep -i -A 5  -B 5  "tolerations"
+  402  kubectl describe pods --all-namespaces | grep -i -A 5  -B 5  "tolerations" | less
+  403  kubectl describe pods --all-namespaces | grep -i -A 5  -B 5  "tolerations" 
+  404  kubectl describe pods --all-namespaces | grep -i -A 5  -B 5  "tolerations"  | less
+  405  kubectl describe nodes | grep -i "taints"
+  406  kubectl describe nodes | grep -i -A 5 -B 5"taints"
+  407  kubectl describe nodes | grep -i -A 5 -B 5 "taints"
+  408  kubectl describe pods 
+  409  kubectl describe pods --all-namespaces
+  410  kubectl describe pods --all-namespaces | less
+  411  kubectl get pods --all-namespaces 
+  412  kubectl edit  pods coredns-6955765f44-2s6h8 -n kube-system 
+  413  kubectl get nodes
+  414  vim pods-rs.yaml
+  415  kubectl get pods
+  416  kubectl apply -f  pods-rs.yaml
+  417  kubectl get pods
+  418  kubectl get rs
+  419  vim frontend.yaml
+  420  kubectl apply -f frontend.yaml 
+  421  vim frontend.yaml
+  422  kubectl apply -f frontend.yaml 
+  423  vim frontend.yaml
+  424  kubectl apply -f frontend.yaml 
+  425  kubectl get pids
+  426  kubectl get pods
+  427  ls
+  428  vim pods-rs.yaml 
+  429  kubectl apply -f pods-rs.yaml 
+  430  kubectl get pods -w
+  431  kubectl delete -f pods-rs.yaml 
+  432  vim pods-rs.yaml 
+  433  kubectl delete -f pods-rs.yaml 
+  434  kubectl get pods -w
+  435  ls
+  436  ls -ald
+  437  ls -ad
+  438  ls -a
+  439  ls -al
+  440  mkdir manifests
+  441  cd manifests/
+  442  ls
+  443  vim Deployment.yaml
+  444  kubectl apply -f Deployment.yaml 
+  445  vim Deployment.yaml
+  446  kubectl apply -f Deployment.yaml 
+  447  vim Deployment.yaml
+  448  kubectl apply -f Deployment.yaml 
+  449  vim Deployment.yaml
+  450  kubectl apply -f Deployment.yaml 
+  451  kubectl get Deployment.yaml 
+  452  vim Deployment.yaml
+  453  kubectl get Deployment.yaml 
+  454  kubectl get deployments
+  455  kubectl get pods
+  456  kubectl get -f Deployment.yaml 
+  457  vim Deployment.yaml
+  458  kubectl apply -f Deployment.yaml 
+  459  vim Deployment.yaml
+  460  kubectl apply -f Deployment.yaml 
+  461  vim Deployment.yaml
+  462  kubectl apply -f Deployment.yaml 
+  463  kubectl get -f Deployment.yaml 
+  464  cat Deployment.yaml 
+  465  vim Deployment.yaml
+  466  cat Deployment.yaml 
+  467  kubectl apply -f Deployment.yaml 
+  468  kubectl get -f Deployment.yaml 
+  469  kubectl get pods
+  470  kubectl apply -f Deployment.yaml 
+  471  kubectl delete pod dileep-test
+  472  kubectl get pods
+  473  kubectl get -f Deployment.yaml 
+  474  kubectl rollout status nginx-deployment
+  475  kubectl get deployments
+  476  kubectl rollout status deployments nginx-deployment
+  477  kubectl rollout status deployments nginx-deployment 
+  478  kubectl rollout status deployments nginx-deployment
+  479  kubectl get deployments
+  480  kubectl get deployments -w
+  481  kubectl rollout status deployments nginx-deployme
+  482  kubectl rollout status deployments nginx-deployment
+  483  kubectl get replicationsets
+  484  kubectl get replication sets
+  485  kubectl get replicationsets
+  486  kubectl api resources
+  487  kubectl api-resources
+  488  kubectl api-resources | grep replication
+  489  kubectl get replicationcontrollers
+  490  kubectl get rs
+  491  kubectl api-resources | grep repli
+  492  kubectl get pods --show-labels
+  493  kubectl rollout hoistory deployment nginx-deployment
+  494  kubectl rollout history deployment nginx-deployment
+  495  kubectl set image deployment/nginx-deployment nginx=nginx:1.9.1 --record
+  496  kubectl rollout history deployment nginx-deployment
+  497  kubectl rollout undo history deployment nginx-deployment
+  498  kubectl rollout undo deployment nginx-deployment
+  499  kubectl rollout history deployment nginx-deployment
+  500  kubectl annotate deployment.v1.apps/nginx-deployment kubernetes.io/change-cause='rolled back to version 1'
+  501  kubectl rollout history deployment nginx-deployment
+  502  kubectl get deployment nginx-deployment
+  503  kubectl scale deployment nginx-deployment --replicas=15
+  504  kubectl get deployment nginx-deployment -w
+  505  kubectl autoscale deployment nginx-deployment --max=15 --min=3 --cpu-percentage=75
+  506  kubectl autoscale deployment nginx-deployment --max=15 --min=3 --cpu-percent=75
+  507  kubectl get deployment nginx-deployment -w
+  508  kubectl autoscale deployment nginx-deployment --max=10 --min=3 --cpu-percent=75
+  509  kubectl get deployment nginx-deployment -w
+  510  kubectl get hpa nginx-deployment -w
+  511  kubectl get heditnginx-deployment -w
+  512  kubectl get heditnginx-deployment 
+  513  kubectl edit hpa nginx-deployment 
+  514  kubectl get deployment nginx-deployment -w
+  515  kubectl rollout status deployment nginx-deployment -w
+  516  kubectl patch deployment.v1.apps/nginx-deployment -p '{"spec":{"progressDeadlineSeconds":600}}'
+  517  kubectl rollout status deployment nginx-deployment -w
+  518  kubectl get deployment nginx-deployment -w
+  519  kubectl describe deployment nginx-deployment -o yaml
+  520  kubectl get deployment nginx-deployment -o yaml
+  521  ls
+  522  kubecrl edit deployment nginx-deployment
+  523  kubectl edit deployment nginx-deployment
+  524  kubectl get pods --all-namespaces -o yaml 
+  525  kubectl get pods --all-namespaces -o yaml  | less
+  526  kubectl get endpoints
+  527  kubectl get endpoints --all-namespaces
+  528  kubectl api-resources
+  529  kubectl get nodes
+  530  kubeclt cluster-info
+  531  kubectl cluster-info
+  532  kubectl version 
+  533  kubectl version --short
+  534  kubectl get nodes
+  535  cd manifests/
+  536  ls
+  537  vim job.yaml
+  538  kubectl api-resource | grep job
+  539  kubectl api-resources | grep job
+  540  kubectl explain jobs
+  541  vim job.yaml
+  542  kubectl apply -f job.yaml
+  543  vim job.yaml
+  544  kubectl apply -f job.yaml
+  545  vim job.yaml
+  546  kubectl apply -f job.yaml
+  547  vim job.yaml
+  548  kubectl apply -f job.yaml
+  549  vim job.yaml
+  550  kubectl apply -f job.yaml
+  551  kubectl get all
+  552  kubectl logs pod/helloworld-f8btr
+  553  kubectl describe pod/helloworld-f8btr
+  554  kubectl get -f job.yaml
+  555  cat job.yaml
+  556  ls
+  557  cp job.yaml cronjob.yaml
+  558  vim cronjob.yaml 
+  559  kubectl apply -f cronjob.yaml 
+  560  kubectl api-resources | grep job
+  561  vim cronjob.yaml 
+  562  kubectl api-resources | grep job
+  563  kubectl apply -f cronjob.yaml 
+  564  kubectl explain cronjobs
+  565  vim cronjob.yaml 
+  566  kubectl apply -f cronjob.yaml 
+  567  kubectl pods
+  568  kubectl get  pods
+  569  kubectl get -f cronjob.yaml 
+  570  kubectl get cj
+  571  kubectl logs helloworld
+  572  kubectl logs cj/helloworld
+  573  kubectl get  pods
+  574  kubectl get  pods -w
+  575  kubectl logs helloworld-f8btr
+  576  kubectl delete -f cronjob.yaml 
+  577  kubectl get cj
+  578  vim cronjob.yaml 
+  579  kubectl apply -f cronjob.yaml 
+  580  kubectl get cj
+  581  kubectl get pods 
+  582  kubectl get cj
+  583  kubectl describe cj/cronjob
+  584  kubectl describe cronjob-1577304480
+  585  kubectl describe cj/cronjob
+  586  kubectl describe cj/cronjob -w
+  587  kubectl pods -w
+  588  kubectl get pods -w
+  589  kubectl get pods 
+  590  cat cronjob.yaml 
+  591  kubectl get cj
+  592  kubectl get cj -o yaml
+  593  kubectl patch cronjob cronjob -p '{"spec":{"suspend":"true"}}'
+  594  kubectl patch cronjob cronjob -p '{"spec":{"suspend":"false"}}'
+  595  kubectl patch cronjob cronjob -p '{"spec":{"suspend":"True"}}'
+  596  kubectl get cj -o yaml
+  597  kubectl get cj -o yaml | grep suspend
+  598  kubectl patch cronjob cronjob -p '{"spec":{"suspend": "true"}}'
+  599  kubectl get cj -o yaml | grep "name, suspend
+  600  "
+  601  kubectl get cj -o yaml | grep name,suspend
+  602  kubectl get cj -o yaml | grep name
+  603  kubectl patch cronjob cronjob -p '{"spec":{"suspend": "true"}}'
+  604  kubectl api-resources | grep end
+  605  kubectl explain endpointslices
+  606  kubectl get nodes
+  607  kubectl get pods
+  608  kubectl get cj
+  609  kubectl edit cj cronjob
+  610  kubectl get cj
+  611  kubectl get configmaps
+  612  kubectl get configmaps --all-namespaces
+  613  kubectl get configmaps coredns -n kube-system | less
+  614  kubectl get configmaps coredns -n kube-system -o yaml
+  615  kubectl get configmaps coredns -n kube-system -o yaml | less
+  616  kubectl get services
+  617  dig kubernetes.default.svc.cluster.local
+  618  dig kubernetes.default.svc.cluster.local +search _short
+  619  dig kubernetes.default.svc.cluster.local +search +short
+  620  kubernetes.default.svc.cluster.local 
+  621  dig kubernetes.default.svc.cluster.local 
+  622  dig kubernetes.default.svc.cluster.local +search +short
+  623  cd manifests/
+  624  ls
+  625  vim pod.yaml
+  626  kubectl apply-f pod.yaml 
+  627  kubectl apply -f pod.yaml 
+  628  vim pod.yaml
+  629  kubectl apply -f pod.yaml 
+  630  kubectl logs pod.yaml 
+  631  kubectl logs dileep-test
+  632  kubectl edit pod dileep-test
+  633  kubectl logs dileep-test
+  634  kubectl get pods
+  635  vim pod.yaml 
+  636  kubectl apply -f pod.yaml 
+  637  kubectl delete pod dileep-text
+  638  kubectl delete pod dileep-test
+  639  kubectl apply -f pod.yaml 
+  640  kubectl get pods
+  641  kubectl it dileep-text -- /bin/bash
+  642  kubectl exec -it dileep-text -- /bin/bash
+  643  kubectl exec -it dileep-test -- /bin/bash
+  644  kubectl get pods
+  645  kubectl logs dileep-test
+  646  kubectl get pods
+  647  kubectl logs helloworld-f8btr
+  648  kubectl delete pods helloworld-f8btr
+  649  kubectl get pods
+  650  kubectl delete pods cronjob-1577397840-gmtpj
+  651  kubectl delete pods cronjob-1577397900-78bkx
+  652  kubectl delete pods cronjob-1577397960-nxg8l
+  653  kubectl get pods 
+  654  kubectl delete pods all
+  655  kubectl delete pods all -n default
+  656  kubectl get pods all -n default
+  657  kubectl get pods
+  658  kubectl delete pods all
+  659  kubectl delete pods
+  660  kubectl delete pods --all
+  661  kubectl get pods 
+  662  kubectl get all
+  663  kubectl delete cj cronjob
+  664  kubectl delete deployment nginx-deployment
+  665  kubectl get all
+  666  kubectl delete replicasets frontend
+  667  kubectl get all
+  668  kubectl delete job job.batch/helloworld
+  669  kubectl delete job.batch/helloworld
+  670  kubectl get all
+  671  kubectl get hpa
+  672  kubectl delete hpa nginx-deployment
+  673  kubectl get all
+  674  docker history nginx
+  675  kubectl get images
+  676  docker images
+  677  docker pull nginx
+  678  docker images
+  679  docker history docker.io/nginx
+  680  ls run-my-nginx.yaml
+  681  vim run-my-nginx.yaml
+  682  kubectl apply -f run-my-nginx.yaml 
+  683  kubectl get pods 
+  684  kubectl get pods -o yaml | grep IP
+  685  ping 10.244.2.119
+  686  ssh 10.244.2.119
+  687  kubectl exec pod my-nginx-75897978cd-9m4lv -- /bin/bash
+  688  kubectl exec -itpod my-nginx-75897978cd-9m4lv /bin/bash
+  689  kubectl exec -it pod my-nginx-75897978cd-9m4lv /bin/bash
+  690  kubectl exec -it my-nginx-75897978cd-9m4lv /bin/bash
+  691  kubectl get services
+  692  curl 10.96.0.1:80
+  693  curl 10.96.0.1
+  694  ping 10.96.0.1
+  695  host 10.96.0.1
+  696  kubectl get pods
+  697  kubectl exec my-nginx-75897978cd-9m4lv --printenv
+  698  kubectl exec my-nginx-75897978cd-9m4lv -- printenv
+  699  kubectl run curl --image=radial/busyboxplus:curl -i -tty
+  700  kubectl get services
+  701  kubectl run curl --image=radial/busyboxplus:curl -i --tty
+  702  history  | less

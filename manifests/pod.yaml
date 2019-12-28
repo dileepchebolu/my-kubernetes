@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: dileep-test
+spec: 
+  containers:
+    - name: dileep
+      image: nginx
+      #command: ["dig", "kubernetes.default.svc.cluster.local +search +short"]
+    
